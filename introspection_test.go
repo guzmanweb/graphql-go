@@ -6,9 +6,9 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/graph-gophers/graphql-go"
-	"github.com/graph-gophers/graphql-go/example/social"
-	"github.com/graph-gophers/graphql-go/example/starwars"
+	"github.com/guzmanweb/graphql-go"
+	"github.com/guzmanweb/graphql-go/example/social"
+	"github.com/guzmanweb/graphql-go/example/starwars"
 )
 
 func TestSchema_ToJSON(t *testing.T) {

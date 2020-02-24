@@ -5,14 +5,14 @@ import (
 	"errors"
 	"reflect"
 
-	qerrors "github.com/graph-gophers/graphql-go/errors"
-	"github.com/graph-gophers/graphql-go/internal/common"
-	"github.com/graph-gophers/graphql-go/internal/exec"
-	"github.com/graph-gophers/graphql-go/internal/exec/resolvable"
-	"github.com/graph-gophers/graphql-go/internal/exec/selected"
-	"github.com/graph-gophers/graphql-go/internal/query"
-	"github.com/graph-gophers/graphql-go/internal/validation"
-	"github.com/graph-gophers/graphql-go/introspection"
+	qerrors "github.com/guzmanweb/graphql-go/errors"
+	"github.com/guzmanweb/graphql-go/internal/common"
+	"github.com/guzmanweb/graphql-go/internal/exec"
+	"github.com/guzmanweb/graphql-go/internal/exec/resolvable"
+	"github.com/guzmanweb/graphql-go/internal/exec/selected"
+	"github.com/guzmanweb/graphql-go/internal/query"
+	"github.com/guzmanweb/graphql-go/internal/validation"
+	"github.com/guzmanweb/graphql-go/introspection"
 )
 
 // Subscribe returns a response channel for the given subscription with the schema's
@@ -21,7 +21,7 @@ import (
 // further resolvers will be called. The context error will be returned as soon
 // as possible (not immediately).
 func (s *Schema) Subscribe(ctx context.Context, queryString string, operationName string, variables map[string]interface{}) (<-chan interface{}, error) {
-	if s.res.Resolver == (reflect.Value{}) {
+	if s.res.ResolverQuery == (reflect.Value{}) || s.res.ResolverMutation == (reflect.Value{}) {
 		return nil, errors.New("schema created without resolver, can not subscribe")
 	}
 	if _, ok := s.schema.EntryPoints["subscription"]; !ok {
